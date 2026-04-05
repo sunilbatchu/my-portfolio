@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunil Batchu - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+            height: 100%;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #1a1a2e;
+            color: #333;
+            font-size: 14px;
+        }
+        .page {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+            max-width: 1600px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.3);
+        }
+        /* Left Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, #1e3a5f 0%, #0f1c2e 100%);
+            color: #fff;
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+        .profile { text-align: center; margin-bottom: 24px; }
+        .profile h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+        .profile .title { font-size: 0.95rem; opacity: 0.85; line-height: 1.5; }
+        .contact-list { margin-bottom: 24px; }
+        .contact-list a { color: #fff; text-decoration: none; }
+        .contact-list div {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .contact-list i { width: 18px; color: #667eea; }
+        .sidebar-section { margin-bottom: 22px; }
+        .sidebar-section h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #667eea;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .skill-tag {
+            display: inline-block;
+            background: rgba(102,126,234,0.2);
+            color: #a8b8ff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin: 3px;
+        }
+        .edu-item { margin-bottom: 14px; }
+        .edu-item strong { display: block; font-size: 0.95rem; margin-bottom: 4px; }
+        .edu-item span { font-size: 0.85rem; opacity: 0.7; }
+        .cert-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(102,126,234,0.25);
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        /* Main Content */
+        .main {
+            padding: 28px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e3a5f;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+            margin-bottom: 12px;
+        }
+        .summary-text {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .achievement {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+        .achievement i { color: #667eea; margin-top: 3px; font-size: 0.8rem; }
+        .skills-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .skill-box {
+            background: #f5f7ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+        .skill-box strong {
+            display: block;
+            font-size: 0.8rem;
+            color: #1e3a5f;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .skill-box span { font-size: 0.85rem; color: #555; line-height: 1.5; }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .exp-card {
+            background: #fafbff;
+            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid #e8ebf5;
+        }
+        .exp-card .project { font-size: 0.8rem; color: #667eea; font-weight: 500; margin-bottom: 4px; }
+        .exp-card .role { font-weight: 600; color: #1e3a5f; font-size: 0.95rem; }
+        .exp-card .company { color: #555; font-size: 0.9rem; margin-bottom: 4px; }
+        .exp-card .date { color: #888; font-size: 0.8rem; margin-bottom: 8px; }
+        .exp-card .tech { font-size: 0.75rem; color: #667eea; margin-bottom: 8px; font-style: italic; }
+        .exp-card ul { padding-left: 16px; margin: 0; }
+        .exp-card li { font-size: 0.85rem; color: #555; margin-bottom: 4px; line-height: 1.4; }
+        @media (max-width: 1200px) {
+            .experience-grid { grid-template-columns: repeat(2, 1fr); }
+            .skills-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .page { grid-template-columns: 1fr; }
+            .sidebar { padding: 20px; }
+            .experience-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <aside class="sidebar">
+        <div class="profile">
+            <h1>Sunil Batchu</h1>
+            <p class="title">Engineering Manager<br>Full Stack JavaScript Leader<br>AI-Driven Innovation</p>
+        </div>
+        
+        <div class="contact-list">
+            <div><i class="fas fa-envelope"></i> <a href="mailto:Sunil.bv6@gmail.com">Sunil.bv6@gmail.com</a></div>
+            <div><i class="fas fa-phone"></i> +91 9000 040 619</div>
+            <div><i class="fas fa-map-marker-alt"></i> Hyderabad, India</div>
+            <div><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/sunilbatchu-7a83b071" target="_blank">LinkedIn</a></div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>AI & Productivity</h3>
+            <span class="skill-tag">RAG Architecture</span>
+            <span class="skill-tag">Context Engineering</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">OpenAI APIs</span>
+            <span class="skill-tag">GitHub Copilot</span>
+            <span class="skill-tag">Prompt Design</span>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Core Tech</h3>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Angular</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Spring Boot</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Education</h3>
+            <div class="edu-item">
+                <strong>Leadership with AI</strong>
+                <span>Indian School of Business<br>2023 – 2024</span>
+            </div>
+            <div class="edu-item">
+                <strong>B.Tech, ECE</strong>
+                <span>CUSAT, Kerala<br>2003 – 2007</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Certification</h3>
+            <div class="cert-badge">
+                <i class="fas fa-award"></i>
+                Leadership with AI – ISB
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <section>
+            <div class="section-title">Professional Summary</div>
+            <p class="summary-text">
+                Engineering Manager with 18+ years leading Full Stack teams in the JavaScript ecosystem (React, Angular, Node.js) with strong Java enterprise foundations. Currently driving AI adoption through RAG architectures, context engineering, and AI-assisted workflows—strategically integrating LLMs to boost productivity and deliver smarter product features.
+            </p>
+        </section>
+
+        <section>
+            <div class="section-title">Key Achievements</div>
+            <div class="achievements-grid">
+                <div class="achievement"><i class="fas fa-check-circle"></i> Led 15+ engineer teams delivering high-availability products on AWS/GCP</div>
+                <div class="achievement"><i class="fas fa-check-circle"></i> Boosted developer productivity 40% via RAG & context engineering</div>
+                <div class="achievement"><i class="fas fa-check-circle"></i> Architected microservices (Node.js, Java) with 99.99% uptime</div>
+                <div class="achievement"><i class="fas fa-check-circle"></i> Implemented AI-powered features using LLM APIs</div>
+                <div class="achievement"><i class="fas fa-check-circle"></i> Reduced deployment time 50% through CI/CD automation</div>
+                <div class="achievement"><i class="fas fa-check-circle"></i> Mentored engineers in JavaScript & AI-assisted development</div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Technical Skills</div>
+            <div class="skills-row">
+                <div class="skill-box">
+                    <strong>Frontend</strong>
+                    <span>React, Angular, Vue, Redux, Backbone, Marionette, HTML5, CSS3, SASS</span>
+                </div>
+                <div class="skill-box">
+                    <strong>Backend</strong>
+                    <span>Node.js, Express, Java, Spring Boot, REST APIs, Microservices</span>
+                </div>
+                <div class="skill-box">
+                    <strong>Cloud & DevOps</strong>
+                    <span>AWS, GCP, Docker, Jenkins, CI/CD, Firebase, Webpack</span>
+                </div>
+                <div class="skill-box">
+                    <strong>Data & Testing</strong>
+                    <span>MongoDB, PostgreSQL, MySQL, Jest, Playwright, Puppeteer, JUnit</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Professional Experience</div>
+            <div class="experience-grid">
+                <div class="exp-card">
+                    <div class="project">OpenText Content Server</div>
+                    <div class="role">Sr. Manager / Principal Engineer</div>
+                    <div class="company">OpenText Technologies</div>
+                    <div class="date">Oct 2019 – Present</div>
+                    <div class="tech">Node.js, React, Backbone, Marionette, LESS, Handlebars</div>
+                    <ul>
+                        <li>Designed generic UI components for in-house framework used across applications</li>
+                        <li>Automated dev testing to enable CI/CD process</li>
+                        <li>Created POC for voice-driven applications</li>
+                        <li>Lead architectural discussions with product managers & designers</li>
+                        <li>Manage R&D projects producing new designs & products</li>
+                    </ul>
+                </div>
+                <div class="exp-card">
+                    <div class="project">Dynamic Website Builder</div>
+                    <div class="role">Senior Consultant</div>
+                    <div class="company">CDK Global</div>
+                    <div class="date">Apr 2017 – Oct 2019</div>
+                    <div class="tech">Node.js, React, Express, LESS, Handlebars, HTML5</div>
+                    <ul>
+                        <li>Revamped UI of dealer-facing website builder tool</li>
+                        <li>Built drag/drop library in vanilla JS for website builder</li>
+                        <li>Developed dashboard app for single-click operations</li>
+                        <li>Designed deep linking solution using hash technique</li>
+                        <li>Built React SPA to schedule consumer website designs</li>
+                    </ul>
+                </div>
+                <div class="exp-card">
+                    <div class="project">Dynamic Webpages Builder (CMS)</div>
+                    <div class="role">Senior Analyst</div>
+                    <div class="company">Bank of America</div>
+                    <div class="date">Aug 2013 – Mar 2017</div>
+                    <div class="tech">Node.js, Angular, React, MongoDB, Express, SASS</div>
+                    <ul>
+                        <li>Offshore Lead for CMS application development</li>
+                        <li>Built enterprise solution generating static HTML pages</li>
+                        <li>Developed Node.js build tool for HTML page generation</li>
+                        <li>Created dashboard for support operations UI</li>
+                        <li>Maintained production CMS servers for BofA web pages</li>
+                    </ul>
+                </div>
+                <div class="exp-card">
+                    <div class="project">Content Management Systems</div>
+                    <div class="role">Senior Software Engineer</div>
+                    <div class="company">HSBC Global Technology</div>
+                    <div class="date">Feb 2011 – Aug 2013</div>
+                    <div class="tech">HTML, JavaScript, CSS, Java, Teamsite, OpenDeploy</div>
+                    <ul>
+                        <li>Attended HP Autonomy Teamsite training in Hong Kong</li>
+                        <li>Developed Teamsite templates using JS, AJAX, HTML</li>
+                        <li>Led end-to-end content migration from US to HK servers</li>
+                        <li>Upgraded Teamsite from 6.5 to 7.3.1</li>
+                        <li>Automated health check process for all Teamsites</li>
+                    </ul>
+                </div>
+                <div class="exp-card">
+                    <div class="project">BT.com CMS</div>
+                    <div class="role">Technical Analyst</div>
+                    <div class="company">Tech Mahindra</div>
+                    <div class="date">Nov 2007 – Jan 2011</div>
+                    <div class="tech">Teamsite, Java, Perl, XML, Solaris, Veritas Cluster</div>
+                    <ul>
+                        <li>Maintained production environment for BT.com & CMS</li>
+                        <li>Worked as Onsite SPOC at UK client location</li>
+                        <li>Involved in Rochdale Migration of BT.com website</li>
+                        <li>Developed workflows and Perl housekeeping scripts</li>
+                        <li>Modified templates based on requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
